@@ -13,12 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard/blodze', function () {
-    return view('welcome');
-});
+
 
 Route::prefix('dashboard')->name('dashboard.')->namespace('App\Http\Controllers')->group(function () {
     Route::get('/', 'DashboardController@index')->name('index');
     Route::resource('donors', 'DonorController');
     Route::resource('donations', 'DonationController');
+});
+
+
+
+Route::get('/', function () {
+    return view('welcome');
 });
