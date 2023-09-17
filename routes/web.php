@@ -16,12 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('dashboard')->name('dashboard.')->namespace('App\Http\Controllers')->group(function () {
-    Route::get('/', 'DashboardController@index')->name('index');
-    Route::resource('donors', 'DonorController');
-    Route::resource('donations', 'DonationController');
+    Route::get('/', 'DashboardController@index')->name('index')->middleware('admin');
+    Route::resource('donors', 'DonorController')->middleware('admin');
+    Route::resource('donations', 'DonationController')->middleware('admin');
 });
-
-
 
 Route::get('/', function () {
     return view('welcome');
